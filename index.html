@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Batnball · Cricket Manager</title>
+<meta name="description" content="Batnball: manage a cricket team from CPL to ICL to the World Cup. Plays on your phone, saves on your device.">
+<meta name="theme-color" content="#1f7a4d">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Batnball">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231f7a4d'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle'%3E%F0%9F%8F%8F%3C/text%3E%3C/svg%3E">
+<style>
+summary.lbs{list-style:none;display:flex;justify-content:space-between;gap:8px;align-items:center;cursor:pointer}summary.lbs::-webkit-details-marker{display:none}
+:root{--bg:#f6f7f4;--card:#fff;--tx:#17201a;--mu:#5d6b61;--ac:#1f7a4d;--bd:#dfe4dc;--ok:#1f7a4d;--bad:#b3541e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1511;--card:#18211b;--tx:#e8eee9;--mu:#9aab9f;--ac:#47c27f;--bd:#2a362d;--ok:#47c27f;--bad:#e8895a}}
+:root[data-theme="dark"]{--bg:#0f1511;--card:#18211b;--tx:#e8eee9;--mu:#9aab9f;--ac:#47c27f;--bd:#2a362d;--ok:#47c27f;--bad:#e8895a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:560px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:4px 0}p.s{color:var(--mu);margin:0 0 14px;font-size:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:12px 0}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+input{flex:1;min-width:0;padding:12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:16px}
+button{flex:1;padding:13px;border:0;border-radius:10px;background:var(--ac);color:#fff;font-size:16px;font-weight:600}
+button.g{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.k{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--bd)}.k:last-child{border:0}
+.ok{color:var(--ok);font-weight:600}.bad{color:var(--bad);font-weight:600}.mu{color:var(--mu);font-size:14px}
+h2{font-size:17px;margin:0 0 6px}.bar{height:8px;border-radius:6px;background:var(--bd);overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--ac)}button.o{background:var(--card);color:var(--tx);border:1px solid var(--bd);text-align:left;margin-top:8px;width:100%}.wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:6px 4px;text-align:right;border-bottom:1px solid var(--bd);white-space:nowrap}td:first-child,th:first-child{text-align:left;white-space:normal}.tl td:nth-child(2),.tl th:nth-child(2){text-align:left;white-space:normal}.tl td:first-child,.tl th:first-child{text-align:center;width:22px}@media(max-width:420px){td,th{padding:6px 3px;font-size:13px}}th{color:var(--mu);font-weight:600}summary{cursor:pointer;font-weight:700;font-size:17px;padding:9px 0}button,summary,[data-pid]{touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,.08)}.bn td{color:var(--mu)}tr[data-p]{cursor:pointer}#modal{display:none;position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,.5);z-index:20;align-items:flex-end;justify-content:center}#modal.on{display:flex}#mbox{background:var(--bg);width:100%;max-width:560px;max-height:88%;overflow:auto;border-radius:16px 16px 0 0;padding:12px 12px calc(16px + env(safe-area-inset-bottom,0px))}.pl{text-decoration:underline dotted;cursor:pointer;display:inline-block;padding:9px 0;margin:-9px 0}#tabs{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--bd);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}#tabs button{flex:1;min-width:0;background:transparent;color:var(--mu);border:0;border-radius:8px;padding:4px 0;font-size:11px;font-weight:600;line-height:1.25}#tabs button.on{color:var(--ac)}#tabs button b{display:block;font-size:20px;line-height:1.1}main{padding-bottom:96px}tr.qb td{border-bottom:2px solid var(--ac)}tr.sel td{background:var(--bd)}.big{font-size:30px;font-weight:700}
+</style></head><body><main>
+<h1>🏏 Batnball</h1>
+<p class="s">CPL cricket manager. Saved on this device.</p>
+<div id="hm"></div><div id="tm" hidden></div><div id="pf" hidden></div><div id="lab" hidden><button class="g" id="lb" style="width:100%;margin-bottom:8px">Back to Leaderboard</button><div class="card"><div class="row"><input id="seed" type="number" inputmode="numeric" aria-label="Seed"><button class="g" id="rnd">New seed</button></div>
+<div class="row" style="margin-top:8px"><button id="one">Play one match</button><button class="g" id="many">Simulate 1000</button></div></div>
+<div id="out"></div></div><div id="play" hidden><div id="psub"></div><div id="cm"></div><div id="g"></div><div id="mr"></div><div id="ct"></div><div class="card"><div class="mu" style="margin-bottom:8px">Exhibition: a one-off match that does not count.</div><button class="g" id="go" style="width:100%">Play an exhibition match</button></div></div><div id="lgv" hidden><div id="lgo"></div></div></main><nav id="tabs"><button id="th"><b>🏠</b>Home</button><button id="tp"><b>🔴</b>Matches</button><button id="tt"><b>🏏</b>My World</button><button id="tg"><b>🌍</b>Cricket</button><button id="tf"><b>🏅</b>Leaderboard</button></nav><div id="modal"><div id="mbox"><button class="g" id="mclose" style="width:100%;margin-bottom:8px">Close</button><div id="mbody"></div></div></div><script>
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+function mkRng(seed){let a=seed>>>0;return()=>{a=(a+0x6d2b79f5)>>>0;let t=a;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296}}
+const eff=(ab,f)=>clamp(ab+(f-50)*0.3,1,100);
+const upForm=(f,p)=>Math.round(clamp(f+clamp(p,-1,1)*10,0,100)*10)/10;
+const drift=f=>Math.round((f+(50-f)*0.1)*10)/10;
+const batPerf=(r,b)=>b?clamp((r-1.24*b)/30,-1,1):0;
+const bowlPerf=(w,r,b)=>b?clamp((1.35*b-r)/24+(w-0.05*b)*0.4,-1,1):0;
+const FN=['Aarav','Vihaan','Arjun','Rohan','Ishan','Kabir','Dev','Rahul','Karan','Yash','Nikhil','Sahil','Aditya','Manav','Tushar','Reyansh','Vivaan','Krish','Harsh','Tanmay','Pranav','Siddharth','Varun','Ayaan'];
+const LN=['Singh','Sharma','Verma','Patel','Rao','Iyer','Nair','Khan','Gill','Yadav','Mehta','Joshi','Reddy','Das','Kumar','Chopra','Bhat','Pillai','Menon','Kapoor','Malik','Sethi','Thakur','Bose'];
+const SQUAD_ROLES=['Opener','Opener','Top order','Middle order','Middle order','All-rounder','All-rounder','Spinner','Fast bowler','Fast bowler','Spinner','Opener','Middle order','Fast bowler','All-rounder'];
+const PERS=['Aggressive','Calm','Big Match Player','Inconsistent','Leader'];
+const tri=(R,lo,hi)=>lo+(hi-lo)*(R()+R())/2;
+function makePlayer(R,role,used,id,ageOv){
+  let n;do{n=FN[Math.floor(R()*FN.length)]+' '+LN[Math.floor(R()*LN.length)]}while(used.has(n));used.add(n);
+  let bat,bowl;
+  if(role=='Spinner'||role=='Fast bowler'){bowl=tri(R,45,85);bat=tri(R,20,40)}
+  else if(role=='All-rounder'){bat=tri(R,45,75);bowl=tri(R,45,75)}
+  else{bat=tri(R,45,85);bowl=tri(R,15,32)}
+  const age=ageOv||Math.round(tri(R,18,36)),adj=age<22?-(22-age)*2.5:age>33?-(age-33)*1.5:0;
+  if(role=='Spinner'||role=='Fast bowler')bowl=Math.max(30,bowl+adj);else if(role=='All-rounder'){bat=Math.max(30,bat+adj);bowl=Math.max(30,bowl+adj)}else bat=Math.max(30,bat+adj);
+  const pers=age<=22&&R()<0.4?'Young Prospect':age>=32&&R()<0.5?'Veteran':PERS[Math.floor(R()*PERS.length)];
+  const p={id,n,role,age,bat:Math.round(bat),bowl:Math.round(bowl),fld:Math.round(tri(R,40,85)),pers,form:Math.round(38+R()*24)};p.pot=potFor(p,R);p.style=role=='All-rounder'?(R()<0.5?'spin':'fast'):role=='Spinner'?'spin':role=='Fast bowler'?'fast':undefined;return p;
+}
+function fixCaps(T){
+  const xi=T.players.slice(0,11),ids=xi.map(p=>p.id),ok=id=>ids.includes(id);
+  const rank=xi.map(p=>[p.id,(p.pers=='Leader'?8:p.pers=='Calm'?4:0)+primary(p)/10+p.age/20]).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);
+  const cap=ok(T.cap)?T.cap:ok(T.vc)?T.vc:rank[0],vc=ok(T.vc)&&T.vc!=cap?T.vc:rank.find(id=>id!=cap);
+  T.cap=cap;T.vc=vc;return T;
+}
+function leadBonus(t){
+  const xi=t.players;let cap=xi.find(p=>p.id==t.cap),vc=xi.find(p=>p.id==t.vc);if(!cap&&vc){cap=vc;vc=null}
+  let b=0;if(xi.some(p=>p.pers=='Leader'))b+=1.5;if(cap)b+=1;if(vc)b+=0.5;return Math.min(2.5,b);
+}
+function makeTeam(R,name){const used=new Set(),t={name,players:SQUAD_ROLES.slice(0,11).map((r,j)=>makePlayer(R,r,used,'p'+j))};return fixCaps(t)}
+const LEAGUE_TEAMS=[['Mumbai','Mumbai','Azad Maidan Ground'],['Delhi','Delhi','Feroz Fields'],['Karnataka','Bengaluru','Lalbagh Oval'],['Tamil Nadu','Chennai','Marina Ground'],['Bengal','Kolkata','Maidan Park'],['Punjab','Mohali','Sector Park'],['Saurashtra','Rajkot','Khandheri Ground'],['Vidarbha','Nagpur','Orange Park']];
+const PITCHES=['Hard surface, good bounce','Dry, spin later','Balanced','Green, early seam'];
+const playoffFixtures=()=>[{id:'Q1',day:15,home:null,away:null,type:'Qualifier 1'},{id:'EL',day:16,home:null,away:null,type:'Eliminator'},{id:'Q2',day:17,home:null,away:null,type:'Qualifier 2'},{id:'F1',day:18,home:null,away:null,type:'Final'}];
+function schedule(ids){
+  const n=ids.length,arr=[...ids],fx=[];let id=1;
+  for(let r=0;r<n-1;r++){
+    for(let k=0;k<n/2;k++){let a=arr[k],b=arr[n-1-k];if((r+k)%2)[a,b]=[b,a];fx.push({id:'M'+id++,day:r+1,home:a,away:b,type:'League'})}
+    arr.splice(1,0,arr.pop());
+  }
+  const first=fx.length;
+  for(let i=0;i<first;i++){const f=fx[i];fx.push({id:'M'+id++,day:f.day+n-1,home:f.away,away:f.home,type:'League'})}
+  fx.push(...playoffFixtures());
+  return fx;
+}
+const ICL_TEAMS=[['Mumbai Mavericks','Mumbai','Marine Drive Oval'],['Chennai Super Chargers','Chennai','Fort St. Ground'],['Royal Falcons Bengaluru','Bengaluru','Garden City Stadium'],['Kolkata Night Raiders','Kolkata','Hooghly Arena'],['Delhi Dynamos','Delhi','Yamuna Arena'],['Punjab Lions','Mohali','Five Rivers Stadium'],['Rajasthan Rajas','Jaipur','Pink City Stadium'],['Sunrise Hawks Hyderabad','Hyderabad','Deccan Dome'],['Gujarat Giants','Ahmedabad','Sabarmati Arena'],['Lucknow Super Knights','Lucknow','Awadh Park']];
+const SHORTS={'Tamil Nadu':'TN','Royal Falcons Bengaluru':'Bengaluru','Sunrise Hawks Hyderabad':'Hyderabad'};
+const sh=n=>SHORTS[n]||String(n).split(' ')[0];
+const iclPlayoffFixtures=()=>[{id:'IQ1',day:15,home:null,away:null,type:'Qualifier 1'},{id:'IEL',day:16,home:null,away:null,type:'Eliminator'},{id:'IQ2',day:17,home:null,away:null,type:'Qualifier 2'},{id:'IF1',day:18,home:null,away:null,type:'Final'}];
+function makeICLTeams(R){return ICL_TEAMS.map(([name,city,gn],i)=>({id:'F'+(i+1),name,city,ground:{name:gn,pitch:PITCHES[Math.floor(R()*PITCHES.length)],straight:Math.round(tri(R,68,80)),square:Math.round(tri(R,62,72))},purse:100,roster:[],cap:null,vc:null,mgr:makeMgr(R)}))}
+function iclSchedule(ids){
+  const n=ids.length,arr=[...ids],fx=[];let id=1;
+  for(let r=0;r<n-1;r++){
+    for(let k=0;k<n/2;k++){let a=arr[k],b=arr[n-1-k];if((r+k)%2)[a,b]=[b,a];fx.push({id:'IM'+id++,day:r+1,home:a,away:b,type:'League'})}
+    arr.splice(1,0,arr.pop());
+  }
+  for(let i=0;i<n/2*(n/2);i++){const f=fx[i];fx.push({id:'IM'+id++,day:f.day+n-1,home:f.away,away:f.home,type:'League'})}
+  fx.push(...iclPlayoffFixtures());
+  return fx;
+}
+function makeLeague(seed){
+  const R=mkRng(seed),used=new Set();
+  const teams=LEAGUE_TEAMS.map(([name,city,gn],i)=>{const id='T'+(i+1);
+    return{id,name,city,ground:{name:gn,pitch:PITCHES[Math.floor(R()*PITCHES.length)],straight:Math.round(tri(R,68,80)),square:Math.round(tri(R,62,72))},
+      players:SQUAD_ROLES.map((r,j)=>makePlayer(R,r,used,id+'P'+(j+1)))}});
+  teams.forEach(t=>{fixCaps(t);t.players.forEach(p=>{p.sal=salaryFor(p);p.end=1+Math.floor(R()*3)});t.budget=Math.max(40,Math.ceil(t.players.reduce((a,p)=>a+p.sal,0))+1)});teams.forEach(t=>t.mgr=makeMgr(R));return{seed,teams,fixtures:schedule(teams.map(t=>t.id))};
+}
+
+
+const NATS=[['Australia',['Jack','Liam','Mitchell','Cameron','Nathan','Aaron','Tim','Josh','Callum','Riley'],['Walker','Hughes','Cooper','Barnes','Taylor','Fraser','Lawson','Stone','Harper','Doyle']],
+ ['England',['Harry','Oliver','James','Sam','Tom','Will','Ollie','Charlie','Jamie','Reece'],['Foster','Hale','Carter','Fisher','Moss','Rowe','Pratt','Hollis','Dawson','Ashby']],
+ ['South Africa',['Pieter','Johan','Thabo','Andre','Ruan','Willem','Sipho','Dewald','Kobus','Lungi'],['van Wyk','Botha','Naidoo','Mokoena','Jacobs','Venter','Kruger','Mthembu','Nel','Louw']],
+ ['New Zealand',['Finn','Tane','Hamish','Rhys','Jacob','Cole','Mason','Kyle','Ethan','Dane'],['Parata','Hartley','Ngata','Tuhi','Whitaker','Bayliss','Moana','Pene','Rutene','Cowan']],
+ ['West Indies',['Darnell','Keron','Shaquille','Tyrone','Jerome','Marlon','Kyron','Rashad','Delroy','Troy'],['Greaves','Phillip','Edwards','Bascombe','Lashley','Haynes','Forde','Alleyne','Cuffy','Brathe']],
+ ['Sri Lanka',['Kasun','Dilan','Nuwan','Lahiru','Sachith','Ravin','Dhanush','Kamil','Isuru','Janith'],['Perera','Silva','Fernando','Gunawardena','Rathnayake','Wickrama','Jayasuriya','Senanayake','Madushan','Ekanayake']],
+ ['Pakistan',['Faisal','Usman','Zubair','Adnan','Kamran','Waqar','Imtiaz','Salman','Danish','Haider'],['Qureshi','Siddiqui','Malik','Butt','Chaudhry','Awan','Baig','Raza','Mirza','Gillani']],
+ ['Bangladesh',['Tanvir','Rakib','Imran','Farhan','Sabbir','Nayeem','Arif','Mahin','Rafi','Jahid'],['Hossain','Ahmed','Rahman','Islam','Chowdhury','Sarkar','Mondal','Biswas','Karim','Talukder']],
+ ['Afghanistan',['Zaman','Hamid','Rahim','Farid','Naveed','Ibrahim','Noor','Shafiq','Bilal','Tariq'],['Zadran','Ahmadzai','Karimi','Noori','Safi','Wardak','Sherzad','Mangal','Habibi','Totakhel']]];
+const isOv=p=>(p.nat||'India')!=='India';
+function makeIntl(R,c,fns,lns,role,used,id,young){
+  const age=young?19+Math.floor(R()*5):Math.round(tri(R,21,34)),p=makePlayer(R,role,new Set(),id,age);let n;
+  do{n=fns[Math.floor(R()*fns.length)]+' '+lns[Math.floor(R()*lns.length)]}while(used.has(n));used.add(n);
+  p.n=n;p.nat=c;
+  const bo=young?1:4;if(role=='Spinner'||role=='Fast bowler')p.bowl=Math.min(92,p.bowl+bo);else if(role=='All-rounder'){p.bat=Math.min(92,p.bat+bo);p.bowl=Math.min(92,p.bowl+bo)}else p.bat=Math.min(92,p.bat+bo);
+  p.pot=potFor(p,R);return p;
+}
+function makeIntlWorld(R,used,startId){
+  const out=[];let k=startId||1;
+  NATS.forEach(([c,f,l])=>SQUAD_ROLES.forEach(role=>out.push(makeIntl(R,c,f,l,role,used,'N'+(k++),false))));
+  return out;
+}
+// ---- IPL-style auction (scaled to this world)
+const AUC={purse:125,minSq:18,maxSq:21,maxOv:8,xiOv:4,slabs:[10,7,5],retain:{mega:{max:3,slabs:[10,7,5]},mini:{max:7,slabs:[10,8,6,5,4,3,2]}}};
+const ICL_NEED={'Opener':3,'Top order':2,'Middle order':3,'All-rounder':3,'Spinner':3,'Fast bowler':4};
+function basePrice(p){const r=primary(p);return r<45?0.2:r<55?0.3:r<62?0.5:r<68?0.75:r<74?1:r<80?1.5:2}
+const incFor=x=>x<1?0.05:x<2?0.1:x<5?0.2:0.25;
+const mvICL=p=>salaryFor(p)*2.3;
+const r2=x=>Math.round(x*100)/100;
+function autoVal(R,f,p){
+  let v=mvICL(p)*(0.95+0.2*R());const c=f.roster.filter(x=>x.p.role==p.role).length,need=ICL_NEED[p.role]||0;
+  const must=({'Opener':2,'Top order':1,'Middle order':2,'All-rounder':2,'Spinner':2,'Fast bowler':3})[p.role]||0;
+  v*=c<must?(c==0?3:2.4):c<need?1.35:c==need?0.6:0.25;
+  if(isOv(p)&&f.ov>=6)v*=0.7;
+  // keep room (squad places and purse) for roles still below the minimum, so auto mode never ends without an all-rounder
+  const MUST={'Opener':2,'Top order':1,'Middle order':2,'All-rounder':2,'Spinner':2,'Fast bowler':3};
+  const unmet=Object.keys(MUST).reduce((a,r)=>a+Math.max(0,MUST[r]-f.roster.filter(x=>x.p.role==r).length-(p.role==r?1:0)),0);
+  if(f.roster.length+1+unmet>AUC.maxSq)return 0;
+  const slots=Math.max(0,AUC.minSq-f.roster.length);
+  return Math.min(v,Math.max(0.2,f.purse-Math.max(0,slots-1)*3-unmet*1.5));
+}
+function valuation(R,f,p){
+  if(f.user&&typeof AU!=='undefined'&&AU&&AU.mode=='auto')return autoVal(R,f,p);
+  let v=mvICL(p);const c=f.roster.filter(x=>x.p.role==p.role).length,need=ICL_NEED[p.role]||0,bowler=p.role=='Spinner'||p.role=='Fast bowler';
+  v*=c<need?1.2:c>=need+2?0.6:1;
+  v*=1+((bowler?f.bias.bowl:f.bias.bat)+(p.age<=23?f.bias.youth:0))/40;
+  v*=0.85+0.35*R();
+  if(isOv(p)&&f.ov>=6)v*=0.75;
+  if(!isOv(p)&&f.roster.length-f.ov>=12)v*=0.55;
+  v*=1+Math.max(0,AUC.minSq-f.roster.length)/18*0.15;
+  return v;
+}
+const canBid=(f,p,price)=>f.roster.length<AUC.maxSq&&(isOv(p)?f.ov<AUC.maxOv:(f.roster.length-f.ov)<(f.user?13:12))&&f.purse-price>=Math.max(0,AUC.minSq-f.roster.length-1)*0.2-1e-9;
+function sellTo(f,p,price,ret){f.purse=r2(f.purse-price);f.roster.push({p,price:r2(price),ret:!!ret});if(isOv(p))f.ov++}
+function runLot(R,fr,p,base){
+  const val=new Map(fr.map(f=>[f,valuation(R,f,p)]));let price=0,leader=null;
+  for(let g=0;g<300;g++){
+    const next=leader?r2(price+incFor(price)):base,ints=fr.filter(f=>f!==leader&&canBid(f,p,next)&&val.get(f)>=next);
+    if(!ints.length)break;
+    const w=ints.map(f=>val.get(f)-next+0.1),tot=w.reduce((a,b)=>a+b,0);let x=R()*tot,i=0;while(i<ints.length-1&&x>w[i]){x-=w[i];i++}
+    leader=ints[i];price=next;
+  }
+  return leader?{f:leader,price}:null;
+}
+function aiRetain(R,f,prevIds,idMap,taken,kind){
+  const cfg=AUC.retain[kind||'mega'],cand=(prevIds||[]).map(id=>idMap.get(id)).filter(p=>p&&!taken.has(p.id)).map(p=>({p,v:valuation(R,f,p)})).sort((a,b)=>b.v-a.v);
+  let k=0;for(const c of cand){if(k>=cfg.max)break;const cost=cfg.slabs[k];if(c.v>=cost*0.95&&(!isOv(c.p)||f.ov<AUC.maxOv)){sellTo(f,c.p,cost,true);taken.add(c.p.id);k++}}
+}
+const lotOrder=(R,players,taken)=>players.filter(p=>!taken.has(p.id)).sort((a,b)=>primary(b)-primary(a)||mvICL(b)-mvICL(a));
+function accelRound(R,fr,unsold,taken){
+  const rest=[];
+  for(const p of unsold){const b=Math.max(0.1,Math.round(basePrice(p)*0.5*20)/20),r=runLot(R,fr,p,b);if(r){sellTo(r.f,p,r.price);taken.add(p.id)}else rest.push(p)}
+  return rest;
+}
+function fillSquads(fr,rest){
+  fr.forEach(f=>{
+    while(f.roster.length<AUC.minSq){
+      const dfc=p=>(ICL_NEED[p.role]||0)-f.roster.filter(x=>x.p.role==p.role).length,c=rest.filter(p=>!isOv(p)||f.ov<AUC.maxOv).sort((a,b)=>((dfc(b)>0)-(dfc(a)>0))||(dfc(b)-dfc(a))||(primary(b)-primary(a)));if(!c.length)break;
+      const p=c.find(q=>Math.max(0.1,basePrice(q)*0.5)<=f.purse)||c[c.length-1];rest=rest.filter(q=>q!==p);sellTo(f,p,Math.max(0,Math.min(f.purse,Math.max(0.1,r2(basePrice(p)*0.5)))));
+    }
+  });
+  return rest;
+}
+function runAuction(R,fr,players,prev,kind){
+  fr.forEach(f=>{f.purse=AUC.purse;f.roster=[];f.ov=0});
+  const ids=new Map(players.map(p=>[p.id,p])),taken=new Set();
+  fr.forEach(f=>aiRetain(R,f,prev&&prev[f.id],ids,taken,kind));
+  const lots=lotOrder(R,players,taken),unsold=[];
+  for(const p of lots){const r=runLot(R,fr,p,basePrice(p));if(r){sellTo(r.f,p,r.price);taken.add(p.id)}else unsold.push(p)}
+  return{unsold:fillSquads(fr,accelRound(R,fr,unsold,taken))};
+}
+function bestXI(pl,maxOv){
+  maxOv=maxOv==null?11:maxOv;const xi=[];let ov=0;const healthy=pl.filter(p=>!p.inj),src=healthy.length>=11?healthy:pl;
+  const add=p=>{if(xi.includes(p)||(isOv(p)&&ov>=maxOv))return;xi.push(p);if(isOv(p))ov++};
+  src.filter(p=>['Spinner','Fast bowler','All-rounder'].includes(p.role)).sort((a,b)=>(b.bowl-fatPen(b))-(a.bowl-fatPen(a))).forEach(p=>{if(xi.length<5)add(p)});
+  [...src].sort((a,b)=>(b.bat-fatPen(b))-(a.bat-fatPen(a))).forEach(p=>{if(xi.length<11)add(p)});
+  [...src].sort((a,b)=>primary(b)-primary(a)).forEach(p=>{if(xi.length<11)add(p)});
+  if(xi.length<11)pl.filter(p=>!p.inj&&!xi.includes(p)).sort((a,b)=>primary(b)-primary(a)).forEach(p
